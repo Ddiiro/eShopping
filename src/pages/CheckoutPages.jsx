@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import './checkout.css'
+import './checkout-header.css'
 
 function CheckoutPages() {
   return (

@@ -24,16 +24,16 @@ function OrderPage() {
             </div>
 
             <div class="right-section">
-                <a class="orders-link header-link" href="orders.html">
+                <Link className="orders-link header-link" to="/orders">
+                    <span className="orders-text">Orders</span>
+                </Link>
 
-                <span class="orders-text">Orders</span>
-                </a>
-
-                <a class="cart-link header-link" href="checkout.html">
-                <img class="cart-icon" src="images/icons/cart-icon.png" />
-                <div class="cart-quantity">3</div>
-                <div class="cart-text">Cart</div>
-                </a>
+                <Link className="cart-link header-link" to="/checkout">
+                    <img className="cart-icon" src="images/icons/cart-icon.png" />
+                    <div className="cart-quantity">3</div>
+                    <div className="cart-text">Cart</div>
+                </Link>
+                
             </div>
         </div>
 
