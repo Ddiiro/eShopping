@@ -1,4 +1,6 @@
 import React from 'react'
+import './HomePage.css'
+import './Header.css'
 
 function HomePage() {
   return (
@@ -185,7 +187,6 @@ function HomePage() {
             </div>
         </div>
         </div>
-        <p>time</p>
     </div>
   )
 }
