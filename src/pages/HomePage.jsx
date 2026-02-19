@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import './HomePage.css'
 import './Header.css'
 
@@ -25,8 +26,9 @@ function HomePage() {
 
             <div className="right-section">
                 <a className="orders-link header-link" href="orders.html">
-
-                <span className="orders-text">Orders</span>
+                <Link to="/orders">
+                    <span className="orders-text">Orders</span>
+                </Link>
                 </a>
 
                 <a className="cart-link header-link" href="checkout.html">
