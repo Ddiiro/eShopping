@@ -8,12 +8,12 @@ function HomePage() {
     <div>
          <div className="header">
             <div className="left-section">
-                <a href="index.html" className="header-link">
-                <img className="logo"
-                    src="images/logo-white.png" />
-                <img className="mobile-logo"
-                    src="images/mobile-logo-white.png" />
-                </a>
+                <Link to="/">
+                    <img className="logo"
+                        src="images/logo-white.png" />
+                    <img className="mobile-logo"
+                        src="images/mobile-logo-white.png" />
+                </Link>
             </div>
 
             <div className="middle-section">
