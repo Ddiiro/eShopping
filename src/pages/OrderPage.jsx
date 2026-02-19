@@ -83,11 +83,11 @@ function OrderPage() {
                     </div>
 
                     <div class="product-actions">
-                    <a href="tracking.html">
-                        <button class="track-package-button button-secondary">
-                        Track package
-                        </button>
-                    </a>
+                        <Link to="/tracking">
+                            <button class="track-package-button button-secondary">
+                                Track package
+                            </button>
+                        </Link>
                     </div>
 
                     <div class="product-image-container">
@@ -111,11 +111,11 @@ function OrderPage() {
                     </div>
 
                     <div class="product-actions">
-                    <a href="tracking.html">
-                        <button class="track-package-button button-secondary">
-                        Track package
-                        </button>
-                    </a>
+                        <Link to="/tracking">
+                            <button class="track-package-button button-secondary">
+                                Track package
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 </div>
@@ -162,11 +162,11 @@ function OrderPage() {
                     </div>
 
                     <div class="product-actions">
-                    <a href="tracking.html">
-                        <button class="track-package-button button-secondary">
-                        Track package
-                        </button>
-                    </a>
+                        <Link to="/tracking">
+                            <button class="track-package-button button-secondary">
+                                Track package
+                            </button>
+                        </Link>
                     </div>
                 </div>
                 </div>
