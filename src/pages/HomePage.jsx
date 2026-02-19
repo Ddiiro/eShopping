@@ -25,17 +25,15 @@ function HomePage() {
             </div>
 
             <div className="right-section">
-                <a className="orders-link header-link" href="orders.html">
-                <Link to="/orders">
+                <Link className="orders-link header-link" to="/orders">
                     <span className="orders-text">Orders</span>
                 </Link>
-                </a>
 
-                <a className="cart-link header-link" href="checkout.html">
-                <img className="cart-icon" src="images/icons/cart-icon.png" />
-                <div className="cart-quantity">3</div>
-                <div className="cart-text">Cart</div>
-                </a>
+                <Link className="cart-link header-link" to="/checkout">
+                    <img className="cart-icon" src="images/icons/cart-icon.png" />
+                    <div className="cart-quantity">3</div>
+                    <div className="cart-text">Cart</div>
+                </Link>
             </div>
         </div>
 
