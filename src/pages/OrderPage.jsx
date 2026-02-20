@@ -1,42 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './orders.css'
+import Header from '../components/Header'
 
 function OrderPage() {
   return (
     <div>
-        <div className="header">
-            <div className="left-section">
-                <Link to="/">
-                    <img className="logo"
-                        src="images/logo-white.png" />
-                    <img className="mobile-logo"
-                        src="images/mobile-logo-white.png" />
-                </Link>
-            </div>
-
-            <div class="middle-section">
-                <input class="search-bar" type="text" placeholder="Search" />
-
-                <button class="search-button">
-                <img class="search-icon" src="images/icons/search-icon.png" />
-                </button>
-            </div>
-
-            <div class="right-section">
-                <Link className="orders-link header-link" to="/orders">
-                    <span className="orders-text">Orders</span>
-                </Link>
-
-                <Link className="cart-link header-link" to="/checkout">
-                    <img className="cart-icon" src="images/icons/cart-icon.png" />
-                    <div className="cart-quantity">3</div>
-                    <div className="cart-text">Cart</div>
-                </Link>
-                
-            </div>
-        </div>
-
+        <Header />
         <div class="orders-page">
             <div class="page-title">Your Orders</div>
 
