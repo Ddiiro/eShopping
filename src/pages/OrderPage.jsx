@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../pages/styles/orders.css'
 import Header from '../components/Header'
 
-function OrderPage() {
+function OrderPage() {    
   return (
     <div>
         <Header />

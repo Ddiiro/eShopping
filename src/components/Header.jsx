@@ -1,8 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import './Header.css'
 
 function Header() {
+    const isActiveLink = ({ isActive }) => ({
+        textDecoration: isActive ? 'underline' : 'none',
+    })
   return (
     <div>
        <div className="header">
@@ -24,9 +27,9 @@ function Header() {
             </div>
 
             <div className="right-section">
-                <Link className="orders-link header-link" to="/orders">
+                <NavLink className="orders-link header-link" style={isActiveLink} to="/orders">
                     <span className="orders-text">Orders</span>
-                </Link>
+                </NavLink>
 
                 <Link className="cart-link header-link" to="/checkout">
                     <img className="cart-icon" src="images/icons/cart-icon.png" />
