@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import './orders.css'
+import '../pages/styles/orders.css'
 import Header from '../components/Header'
 
 function OrderPage() {

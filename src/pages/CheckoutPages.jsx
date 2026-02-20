@@ -1,5 +1,5 @@
 import React from 'react'
-import './checkout.css'
+import '../pages/styles/checkout.css'
 import CheckoutHeader from '../components/CheckoutHeader';
 
 function CheckoutPages() {
