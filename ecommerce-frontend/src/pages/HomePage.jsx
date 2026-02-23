@@ -3,7 +3,6 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import '../pages/styles/HomePage.css'
 import Header from '../components/Header'
-// import {products} from '../../starting-code/data/products.js'
 
 function HomePage() {
     const [products, setProducts] = useState([])
@@ -20,7 +19,6 @@ function HomePage() {
 
         axios.get('http://localhost:3000/api/cart-items')
         .then((response) => {
-            console.log(response.data)
             setCartItems(response.data)
         })
         .catch((error) => {
