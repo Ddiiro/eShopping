@@ -7,12 +7,21 @@ import Header from '../components/Header'
 
 function HomePage() {
     const [products, setProducts] = useState([])
+    const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
         axios.get('http://localhost:3000/api/products')
         .then((response) => {
-            console.log(response.data)
             setProducts(response.data)
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+
+        axios.get('http://localhost:3000/api/cart-items')
+        .then((response) => {
+            console.log(response.data)
+            setCartItems(response.data)
         })
         .catch((error) => {
             console.log(error)
@@ -20,7 +29,7 @@ function HomePage() {
     }, [])
   return (
     <div>
-        <Header />
+        <Header cartItems={cartItems} />
         <div className="home-page">
         <div className="products-grid">
 

@@ -1,9 +1,14 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css'
-// import logo from '/'
 
-function Header() {
+function Header({cartItems}) {
+
+    let totalQuantity = 0
+    cartItems.forEach((item) => {
+        totalQuantity += item.quantity
+    })
+
     const isActiveLink = ({ isActive }) => ({
         textDecoration: isActive ? 'underline' : 'none',
     })
@@ -34,7 +39,7 @@ function Header() {
 
                 <Link className="cart-link header-link" to="/checkout">
                     <img className="cart-icon" src="public/assets/images/icons/cart-icon.png" />
-                    <div className="cart-quantity">3</div>
+                    <div className="cart-quantity">{totalQuantity}</div>
                     <div className="cart-text">Cart</div>
                 </Link>
             </div>
