@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css'
+// import logo from '/'
 
 function Header() {
     const isActiveLink = ({ isActive }) => ({
@@ -12,9 +13,9 @@ function Header() {
             <div className="left-section">
                 <Link to="/">
                     <img className="logo"
-                        src="images/logo-white.png" />
+                        src="public/assets/images/logo-white.png" />
                     <img className="mobile-logo"
-                        src="images/mobile-logo-white.png" />
+                        src="public/assets/images/mobile-logo-white.png" />
                 </Link>
             </div>
 
@@ -22,7 +23,7 @@ function Header() {
                 <input className="search-bar" type="text" placeholder="Search" />
 
                 <button className="search-button">
-                <img className="search-icon" src="images/icons/search-icon.png" />
+                <img className="search-icon" src="public/assets/images/icons/search-icon.png" />
                 </button>
             </div>
 
@@ -32,7 +33,7 @@ function Header() {
                 </NavLink>
 
                 <Link className="cart-link header-link" to="/checkout">
-                    <img className="cart-icon" src="images/icons/cart-icon.png" />
+                    <img className="cart-icon" src="public/assets/images/icons/cart-icon.png" />
                     <div className="cart-quantity">3</div>
                     <div className="cart-text">Cart</div>
                 </Link>

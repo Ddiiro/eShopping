@@ -18,7 +18,7 @@ function CheckoutPages() {
 
                     <div class="cart-item-details-grid">
                     <img class="product-image"
-                        src="images/products/athletic-cotton-socks-6-pairs.jpg" />
+                        src="public/assets/images/products/athletic-cotton-socks-6-pairs.jpg" />
 
                     <div class="cart-item-details">
                         <div class="product-name">
@@ -94,7 +94,7 @@ function CheckoutPages() {
 
                     <div class="cart-item-details-grid">
                     <img class="product-image"
-                        src="images/products/intermediate-composite-basketball.jpg" />
+                        src="public/assets/images/products/intermediate-composite-basketball.jpg" />
 
                     <div class="cart-item-details">
                         <div class="product-name">

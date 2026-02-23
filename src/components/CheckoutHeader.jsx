@@ -9,7 +9,7 @@ function CheckoutHeader() {
             <div className="header-content">
                 <div className="checkout-header-left-section">
                 <Link to="/">
-                    <img className="logo" src="images/logo.png" />
+                    <img className="logo" src="public/assets/images/logo.png" />
                     <img className="mobile-logo" src="images/mobile-logo.png" />
                 </Link>
                 </div>
@@ -20,7 +20,7 @@ function CheckoutHeader() {
                 </div>
 
                 <div class="checkout-header-right-section">
-                <img src="images/icons/checkout-lock-icon.png" />
+                <img src="public/assets/images/icons/checkout-lock-icon.png" />
                 </div>
             </div>
         </div>
