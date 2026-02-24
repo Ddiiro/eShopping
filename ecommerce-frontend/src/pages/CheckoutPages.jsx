@@ -8,7 +8,7 @@ function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/payment-summary')
+        axios.get('/api/payment-summary')
             .then((response) => {
                 console.log(response.data)
                 setPaymentSummary(response.data)
