@@ -24,9 +24,9 @@ function App() {
   return (
     <Routes>
         <Route path="/" element={<HomePage carts={cart}/>} />
-        <Route path="/orders" element={<OrderPage />} />
-        <Route path="/checkout" element={<CheckoutPages cartItems/>} />
-        <Route path="/tracking" element={<TrackingPage />} />
+        <Route path="/orders" element={<OrderPage carts={cart}/>} />
+        <Route path="/checkout" element={<CheckoutPages cartItems={cart}/>} />
+        <Route path="/tracking" element={<TrackingPage cartItems={cart} />} />
 
         {/* Wildcard route for 404 page (must be last) */}
         <Route path="*" element={<PageNotFound />} />

@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import '../pages/styles/orders.css'
 import Header from '../components/Header'
 
-function OrderPage() {    
+function OrderPage({ carts }) { 
+    let cartItems = carts   
   return (
     <div>
-        <Header />
+        <Header cartItems={cartItems} />
         <div class="orders-page">
             <div class="page-title">Your Orders</div>
 
