@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 
 function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
-
     useEffect(() => {
         axios.get('/api/payment-summary')
             .then((response) => {
