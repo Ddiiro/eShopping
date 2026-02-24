@@ -4,22 +4,14 @@ import { useState, useEffect } from 'react'
 import '../pages/styles/HomePage.css'
 import Header from '../components/Header'
 
-function HomePage() {
+function HomePage({ carts }) {
+    let cartItems = carts
     const [products, setProducts] = useState([])
-    const [cartItems, setCartItems] = useState([])
 
     useEffect(() => {
         axios.get('/api/products')
         .then((response) => {
             setProducts(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-
-        axios.get('/api/cart-items')
-        .then((response) => {
-            setCartItems(response.data)
         })
         .catch((error) => {
             console.log(error)
