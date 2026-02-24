@@ -22,7 +22,6 @@ function HomePage({ carts }) {
         <Header cartItems={cartItems} />
         <div className="home-page">
         <div className="products-grid">
-
             {
                 products.map((product) => {
                     return (
