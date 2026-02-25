@@ -3,6 +3,7 @@ import '../pages/styles/checkout.css'
 import CheckoutHeader from '../components/CheckoutHeader';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { formatCurrency } from '../utils/currency';
 
 function CheckoutPages({ carts }) {
     console.log(carts)
@@ -47,11 +48,11 @@ function CheckoutPages({ carts }) {
                                                     {cartItem.product.name}
                                                 </div>
                                                 <div class="product-price">
-                                                    $10.90
+                                                    {formatCurrency(cartItem.product.priceCents)}
                                                 </div>
                                                 <div class="product-quantity">
                                                     <span>
-                                                        Quantity: <span class="quantity-label">2</span>
+                                                        Quantity: <span class="quantity-label">{cartItem.quantity}</span>
                                                     </span>
                                                     <span class="update-quantity-link link-primary">
                                                         Update
