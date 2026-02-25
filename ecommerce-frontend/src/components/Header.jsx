@@ -39,7 +39,7 @@ function Header({cartItems}) {
 
                 <Link className="cart-link header-link" to="/checkout">
                     <img className="cart-icon" src="public/assets/images/icons/cart-icon.png" />
-                    {/* <div className="cart-quantity">{totalQuantity}</div> */}
+                    <div className="cart-quantity">{totalQuantity}</div>
                     <div className="cart-text">Cart</div>
                 </Link>
             </div>

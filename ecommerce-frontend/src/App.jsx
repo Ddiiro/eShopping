@@ -12,7 +12,7 @@ function App() {
   const [cart, setCart] = useState([])
 
   useEffect(() => {
-    axios.get('/api/cart-items')
+    axios.get('/api/cart-items?expand=product')
     .then((response) => {
         setCart(response.data)
     })
@@ -25,8 +25,8 @@ function App() {
     <Routes>
         <Route path="/" element={<HomePage carts={cart}/>} />
         <Route path="/orders" element={<OrderPage carts={cart}/>} />
-        <Route path="/checkout" element={<CheckoutPages cartItems={cart}/>} />
-        <Route path="/tracking" element={<TrackingPage cartItems={cart} />} />
+        <Route path="/checkout" element={<CheckoutPages carts={cart}/>} />
+        <Route path="/tracking" element={<TrackingPage carts={cart} />} />
 
         {/* Wildcard route for 404 page (must be last) */}
         <Route path="*" element={<PageNotFound />} />
