@@ -41,10 +41,13 @@ function CheckoutPages({ carts }) {
                     <div class="order-summary">
                         {
                             carts.map((cartItem) => {
+                                    const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
+                                        return deliveryOption.id === cartItem.deliveryOptionId;
+                                    })
                                 return (
-                                    <div key={cartItem.id} class="cart-item-container">
+                                    <div key={cartItem.productId} class="cart-item-container">
                                         <div class="delivery-date">
-                                            Delivery date: Tuesday, June 21
+                                            Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd MMMM D')}
                                         </div>
 
                                         <div class="cart-item-details-grid">
