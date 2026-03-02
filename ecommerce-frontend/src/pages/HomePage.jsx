@@ -10,13 +10,15 @@ function HomePage({ carts }) {
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        axios.get('/api/products')
-        .then((response) => {
-            setProducts(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get('/api/products')
+                setProducts(response.data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        fetchProducts();
     }, [])
   return (
     <div>

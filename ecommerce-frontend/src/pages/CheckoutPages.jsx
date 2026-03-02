@@ -10,20 +10,24 @@ function CheckoutPages({ carts }) {
     const [paymentSummary, setPaymentSummary] = useState({})
     const [deliveryOptions, setDeliveryOptions] = useState([])
     useEffect(() => {
-        axios.get('/api/payment-summary')
-            .then((response) => {
+        const fetchPaymentSummary = async () => {
+            try {
+                const response = await axios.get('/api/payment-summary')
                 setPaymentSummary(response.data)
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.log(error)
-            })
-        axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-            .then((response) => {
+            }
+        }
+        const fetchDeliveryOptions = async () => {
+            try {
+                const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
                 setDeliveryOptions(response.data)
-            })
-            .catch((error) => {
+            } catch (error) {
                 console.log(error)
-            })
+            }
+        }
+        fetchPaymentSummary();
+        fetchDeliveryOptions();
     }, [])
 
     let totalItems = 0
