@@ -41,13 +41,13 @@ function CheckoutPages({ carts }) {
                     <div class="order-summary">
                         {
                             carts.map((cartItem) => {
-                                    const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
-                                        return deliveryOption.id === cartItem.deliveryOptionId;
-                                    })
+                                const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
+                                    return deliveryOption.id === cartItem.deliveryOptionId;
+                                })
                                 return (
                                     <div key={cartItem.productId} class="cart-item-container">
                                         <div class="delivery-date">
-                                            Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd MMMM D')}
+                                            Delivery date: {selectedDeliveryOption ? dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd MMMM D') : "Not selected"}
                                         </div>
 
                                         <div class="cart-item-details-grid">
@@ -79,25 +79,25 @@ function CheckoutPages({ carts }) {
                                                     Choose a delivery option:
                                                 </div>
                                                 {
-                                                        deliveryOptions.map((deliveryOption) => {
-                                                            return (
-                                                                <div class="delivery-option" key={deliveryOption.id}>
-                                                                    <input type="radio"
-                                                                        class="delivery-option-input"
-                                                                        name={`delivery-option-${cartItem.productId}`} 
-                                                                        checked={cartItem.deliveryOptionId === deliveryOption.id}
-                                                                    />
-                                                                    <div>
-                                                                        <div class="delivery-option-date">
-                                                                            {dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd MMMM D')}
-                                                                        </div>
-                                                                        <div class="delivery-option-price">
-                                                                            {deliveryOption.priceCents === 0 ? 'FREE Shipping' : `${formatCurrency(deliveryOption.priceCents)} - Shipping`}
-                                                                        </div>
+                                                    deliveryOptions.map((deliveryOption) => {
+                                                        return (
+                                                            <div class="delivery-option" key={deliveryOption.id}>
+                                                                <input type="radio"
+                                                                    class="delivery-option-input"
+                                                                    name={`delivery-option-${cartItem.productId}`}
+                                                                    checked={cartItem.deliveryOptionId === deliveryOption.id}
+                                                                />
+                                                                <div>
+                                                                    <div class="delivery-option-date">
+                                                                        {dayjs(deliveryOption.estimatedDeliveryTimeMs).format('dddd MMMM D')}
+                                                                    </div>
+                                                                    <div class="delivery-option-price">
+                                                                        {deliveryOption.priceCents === 0 ? 'FREE Shipping' : `${formatCurrency(deliveryOption.priceCents)} - Shipping`}
                                                                     </div>
                                                                 </div>
-                                                            )
-                                                        })
+                                                            </div>
+                                                        )
+                                                    })
                                                 }
                                             </div>
                                         </div>
