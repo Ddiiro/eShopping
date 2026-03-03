@@ -21,6 +21,9 @@ function OrdersGrid() {
         }
         fetchOrders();
     }, [])
+
+    let orderId =orders.length > 0 ? orders.id : null
+    let productId = orders.length > 0 && orders.products.length > 0 ? orders.products.productId : null
     return (
         <>
             <div class="orders-page">
@@ -76,7 +79,7 @@ function OrdersGrid() {
                                                         </div>
 
                                                         <div class="product-actions">
-                                                            <Link to="/tracking">
+                                                            <Link to={`/tracking/${orderId}/${productId}`}>
                                                                 <button class="track-package-button button-secondary">
                                                                     Track package
                                                                 </button>

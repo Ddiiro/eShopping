@@ -4,6 +4,7 @@ import '../pages/styles/tracking.css'
 import Header from '../components/Header'
 
 function TrackingPage({carts}) {
+    console.log(carts)
   return (
     <div>
         <Header cartItems={carts} />
@@ -22,7 +23,7 @@ function TrackingPage({carts}) {
                 </div>
 
                 <div class="product-info">
-                Quantity: 1
+                Quantity: {carts.quantity}
                 </div>
 
                 <img class="product-image" src="public/assets/images/products/athletic-cotton-socks-6-pairs.jpg" />
