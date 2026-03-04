@@ -22,8 +22,8 @@ function OrdersGrid() {
         fetchOrders();
     }, [])
 
-    let orderId =orders.length > 0 ? orders.id : null
-    let productId = orders.length > 0 && orders.products.length > 0 ? orders.products.productId : null
+    let orderId = null
+    let productId =  null
     return (
         <>
             <div class="orders-page">
