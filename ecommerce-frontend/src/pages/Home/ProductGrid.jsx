@@ -1,5 +1,5 @@
 import React from 'react'
-import '../pages/styles/HomePage.css'
+import '../Home/HomePage.css'
 
 function ProductGrid({ products }) {
     return (
