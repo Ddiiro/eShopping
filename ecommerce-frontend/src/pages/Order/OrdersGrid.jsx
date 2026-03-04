@@ -1,7 +1,7 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom';
-import '../pages/styles/orders.css'
+import '../Order/orders.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { formatCurrency } from '../../utils/currency';
