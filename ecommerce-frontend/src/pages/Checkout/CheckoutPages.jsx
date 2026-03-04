@@ -1,9 +1,9 @@
 import React from 'react'
 import '../pages/styles/checkout.css'
-import CheckoutHeader from '../components/CheckoutHeader';
+import CheckoutHeader from './CheckoutHeader';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { formatCurrency } from '../utils/currency';
+import { formatCurrency } from '../../utils/currency';
 import dayjs from 'dayjs';
 
 function CheckoutPages({ carts }) {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import '../pages/styles/tracking.css'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 
 function TrackingPage({carts}) {
     console.log(carts)

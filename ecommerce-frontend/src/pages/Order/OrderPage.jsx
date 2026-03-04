@@ -1,5 +1,5 @@
-import Header from '../components/Header'
-import OrdersGrid from '../components/OrdersGrid';
+import Header from '../../components/Header'
+import OrdersGrid from './OrdersGrid';
 
 function OrderPage({ carts }) {
 

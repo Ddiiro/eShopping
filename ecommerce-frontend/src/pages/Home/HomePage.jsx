@@ -2,7 +2,7 @@ import React, { use } from 'react'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import '../pages/styles/HomePage.css'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import ProductGrid from './ProductGrid'
 
 function HomePage({ carts }) {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import '../pages/styles/orders.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { formatCurrency } from '../utils/currency';
+import { formatCurrency } from '../../utils/currency';
 import dayjs from 'dayjs';
 
 function OrdersGrid() {
