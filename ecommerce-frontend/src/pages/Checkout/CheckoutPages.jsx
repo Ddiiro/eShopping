@@ -1,5 +1,5 @@
 import React from 'react'
-import '../pages/styles/checkout.css'
+import '../Checkout/checkout.css'
 import CheckoutHeader from './CheckoutHeader';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
