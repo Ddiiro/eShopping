@@ -4,9 +4,11 @@ import { useState, useEffect } from 'react'
 import '../Home/HomePage.css'
 import Header from '../../components/Header'
 import ProductGrid from './ProductGrid'
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
 
-function HomePage({ carts }) {
-    let cartItems = carts
+function HomePage() {
+    const cart = useContext(ordersContext);
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -22,7 +24,7 @@ function HomePage({ carts }) {
     }, [])
   return (
     <div>
-        <Header cartItems={cartItems} />
+        <Header cartItems={cart} />
         <ProductGrid products={products} />
     </div>
   )
