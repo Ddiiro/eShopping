@@ -2,12 +2,17 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import '../Tracking/tracking.css'
 import Header from '../../components/Header'
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
+import { useParams } from 'react-router-dom';
 
-function TrackingPage({carts}) {
-    console.log(carts)
+function TrackingPage() {
+    const {cart,orders} = useContext(ordersContext);
+    const {orderId, productId} = useParams();
+    
   return (
     <div>
-        <Header cartItems={carts} />
+        <Header cartItems={cart} />
         <div class="tracking-page">
             <div class="order-tracking">
                 <a class="back-to-orders-link link-primary" href="orders.html">
@@ -23,7 +28,7 @@ function TrackingPage({carts}) {
                 </div>
 
                 <div class="product-info">
-                Quantity: {carts.quantity}
+                Quantity: {cart.quantity}
                 </div>
 
                 <img class="product-image" src="public/assets/images/products/athletic-cotton-socks-6-pairs.jpg" />

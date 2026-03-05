@@ -2,28 +2,14 @@ import React from 'react'
 import { Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import '../Order/orders.css'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { formatCurrency } from '../../utils/currency';
 import dayjs from 'dayjs';
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
 
 function OrdersGrid() {
-    const [orders, setOrders] = useState([])
+const { orders } = useContext(ordersContext); 
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axios.get('/api/orders?expand=products')
-                setOrders(response.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchOrders();
-    }, [])
-
-    let orderId = null
-    let productId =  null
     return (
         <>
             <div class="orders-page">
@@ -79,7 +65,7 @@ function OrdersGrid() {
                                                         </div>
 
                                                         <div class="product-actions">
-                                                            <Link to={`/tracking/${orderId}/${productId}`}>
+                                                            <Link to={`/tracking/${order.id}/${product.productId}`}>
                                                                 <button class="track-package-button button-secondary">
                                                                     Track package
                                                                 </button>

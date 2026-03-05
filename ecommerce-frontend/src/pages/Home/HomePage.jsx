@@ -6,9 +6,10 @@ import Header from '../../components/Header'
 import ProductGrid from './ProductGrid'
 import { useContext } from 'react';
 import { ordersContext } from '../../App';
+// import { ordersContext } from '../../store/context';
 
 function HomePage() {
-    const cart = useContext(ordersContext);
+    const {cart} = useContext(ordersContext); 
     const [products, setProducts] = useState([])
 
     useEffect(() => {
