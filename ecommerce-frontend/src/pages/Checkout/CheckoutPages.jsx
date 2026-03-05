@@ -5,10 +5,14 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { formatCurrency } from '../../utils/currency';
 import dayjs from 'dayjs';
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
 
-function CheckoutPages({ carts }) {
+function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
     const [deliveryOptions, setDeliveryOptions] = useState([])
+    const { cart } = useContext(ordersContext); 
+
     useEffect(() => {
         const fetchPaymentSummary = async () => {
             try {
@@ -44,7 +48,7 @@ function CheckoutPages({ carts }) {
                 <div class="checkout-grid">
                     <div class="order-summary">
                         {
-                            carts.map((cartItem) => {
+                            cart.map((cartItem) => {
                                 const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
                                     return deliveryOption.id === cartItem.deliveryOptionId;
                                 })
