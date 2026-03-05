@@ -1,11 +1,13 @@
 import Header from '../../components/Header'
 import OrdersGrid from './OrdersGrid';
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
 
-function OrderPage({ carts }) {
-
+function OrderPage() {
+    const cart = useContext(ordersContext);  
     return (
         <div>
-            <Header cartItems={carts} />
+            <Header cartItems={cart}/>
             <OrdersGrid />
 
         </div>
