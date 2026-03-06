@@ -39,6 +39,14 @@ function CheckoutPages() {
         totalItems = paymentSummary.totalItems
     }
 
+    const handleDeleteCartItem = async (cartItemId) => {
+        try {
+            await axios.delete(`/api/cart-items/${cartItemId}`)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <div>
             <CheckoutHeader totalItems={totalItems} />
@@ -79,13 +87,7 @@ function CheckoutPages() {
                                                         Update
                                                     </button>
                                                     <button className="button-danger"
-                                                        onClick={() => {
-                                                            axios.delete(`/api/cart-items/${cartItem.productId}`,
-                                                                {
-                                                                    productId: cartItem.productId
-                                                                }
-                                                            )
-                                                        }}
+                                                        onClick={() => handleDeleteCartItem(cartItem.productId)}
                                                     >
                                                         Delete
                                                     </button>
