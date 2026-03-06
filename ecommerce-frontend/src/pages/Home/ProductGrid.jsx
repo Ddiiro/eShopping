@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Home/HomePage.css'
+import axios from 'axios'
 
 function ProductGrid({ products }) {
     return (
@@ -42,7 +43,14 @@ function ProductGrid({ products }) {
                                     <img src='public/assets/images/icons/checkmark.png' />
                                     Added to Cart
                                 </div>
-                                <button className="add-to-cart-button button-primary">
+                                <button className="add-to-cart-button button-primary"
+                                    onClick={() => {
+                                        axios.post('/api/cart-items', {
+                                            productId: product.id,
+                                            quantity: 1
+                                        })
+                                    }}
+                                >
                                     Add to Cart
                                 </button>
                             </div>
