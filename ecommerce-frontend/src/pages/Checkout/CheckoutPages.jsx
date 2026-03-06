@@ -11,7 +11,7 @@ import { ordersContext } from '../../App';
 function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
     const [deliveryOptions, setDeliveryOptions] = useState([])
-    const { cart } = useContext(ordersContext); 
+    const { cart } = useContext(ordersContext);
 
     useEffect(() => {
         const fetchPaymentSummary = async () => {
@@ -73,12 +73,22 @@ function CheckoutPages() {
                                                     <span>
                                                         Quantity: <span class="quantity-label">{cartItem.quantity}</span>
                                                     </span>
-                                                    <span class="update-quantity-link link-primary">
+                                                </div>
+                                                <div class="update-cart-item">
+                                                    <button className=" button-update-cart" >
                                                         Update
-                                                    </span>
-                                                    <span class="delete-quantity-link link-primary">
+                                                    </button>
+                                                    <button className="button-danger"
+                                                        onClick={() => {
+                                                            axios.delete(`/api/cart-items/${cartItem.productId}`,
+                                                                {
+                                                                    productId: cartItem.productId
+                                                                }
+                                                            )
+                                                        }}
+                                                    >
                                                         Delete
-                                                    </span>
+                                                    </button>
                                                 </div>
                                             </div>
 
@@ -149,7 +159,7 @@ function CheckoutPages() {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
