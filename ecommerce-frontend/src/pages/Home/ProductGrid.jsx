@@ -38,6 +38,13 @@ function ProductGrid({ products }) {
                                         <option value="4">4</option>
                                     </select>
                                 </div>
+                                <div className='added-to-cart'>
+                                    <img src='public/assets/images/icons/checkmark.png' />
+                                    Added to Cart
+                                </div>
+                                <button className="add-to-cart-button button-primary">
+                                    Add to Cart
+                                </button>
                             </div>
                         )
                     }
