@@ -13,7 +13,7 @@ function CheckoutPages() {
     const [deliveryOptions, setDeliveryOptions] = useState([])
     const { cart } = useContext(ordersContext);
     const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
-    // const [quantityInput, setQuantityInput] = useState(0);
+    const [quantityInput, setQuantityInput] = useState(0);
 
     useEffect(() => {
         const fetchPaymentSummary = async () => {
@@ -49,8 +49,16 @@ function CheckoutPages() {
         }
     }
 
-    const handleQuantityInputChange = () => {
+    const handleQuantityInputChange = (quantity) => {
         setIsUpdatingCartItem(true);
+        setQuantityInput(quantity);
+
+    }
+
+    const handleInputChange = (e) => {
+        setQuantityInput(e.target.value);
+        console.log("Quantity input:", e.target.value);
+        // setIsUpdatingCartItem(true);
     }
 
     // const handleUpdateCartItem = async (cartItem, productId) => {
@@ -101,7 +109,7 @@ function CheckoutPages() {
                                                 <div class="product-quantity">
                                                     {
                                                         isUpdatingCartItem ? (
-                                                            <input type="number" class="quantity-input" defaultValue={cartItem.quantity} />
+                                                            <input type="number" class="quantity-input" defaultValue={quantityInput} onChange={(e) => handleInputChange(e)}/>
                                                         ) : (
                                                             <span>
                                                                 Quantity: <span class="quantity-label">{cartItem.quantity}</span>
@@ -111,7 +119,7 @@ function CheckoutPages() {
                                                 </div>
                                                 <div class="update-cart-item">
                                                     <button className=" button-update-cart"
-                                                        onClick={() => handleQuantityInputChange()}
+                                                        onClick={() => handleQuantityInputChange(cartItem.quantity)}
                                                     >
                                                         Update
                                                     </button>
