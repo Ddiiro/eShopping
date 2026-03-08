@@ -12,6 +12,8 @@ function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
     const [deliveryOptions, setDeliveryOptions] = useState([])
     const { cart } = useContext(ordersContext);
+    const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
+    // const [quantityInput, setQuantityInput] = useState(0);
 
     useEffect(() => {
         const fetchPaymentSummary = async () => {
@@ -47,6 +49,25 @@ function CheckoutPages() {
         }
     }
 
+    const handleQuantityInputChange = () => {
+        setIsUpdatingCartItem(true);
+    }
+
+    // const handleUpdateCartItem = async (cartItem, productId) => {
+    //     isUpdatingCartItem = true;
+    //     let quantityInput = cartItem.quantity;
+
+    //     try {
+    //         await axios.put(`/api/cart-items/${productId}`, {
+    //             quantity: quantityInput
+    //         });
+    //     } catch (error) {
+    //         console.log(error);
+    //     } finally {
+    //         isUpdatingCartItem = false;
+    //     }
+    // };
+
     return (
         <div>
             <CheckoutHeader totalItems={totalItems} />
@@ -78,12 +99,20 @@ function CheckoutPages() {
                                                     {formatCurrency(cartItem.product.priceCents)}
                                                 </div>
                                                 <div class="product-quantity">
-                                                    <span>
-                                                        Quantity: <span class="quantity-label">{cartItem.quantity}</span>
-                                                    </span>
+                                                    {
+                                                        isUpdatingCartItem ? (
+                                                            <input type="number" class="quantity-input" defaultValue={cartItem.quantity} />
+                                                        ) : (
+                                                            <span>
+                                                                Quantity: <span class="quantity-label">{cartItem.quantity}</span>
+                                                            </span>)
+                                                    }
+
                                                 </div>
                                                 <div class="update-cart-item">
-                                                    <button className=" button-update-cart" >
+                                                    <button className=" button-update-cart"
+                                                        onClick={() => handleQuantityInputChange()}
+                                                    >
                                                         Update
                                                     </button>
                                                     <button className="button-danger"
