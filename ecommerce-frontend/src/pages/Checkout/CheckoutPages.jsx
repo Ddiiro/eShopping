@@ -57,7 +57,6 @@ function CheckoutPages() {
 
     const handleInputChange = (e) => {
         setQuantityInput(e.target.value);
-        console.log("Quantity input:", e.target.value);
         // setIsUpdatingCartItem(true);
     }
 
