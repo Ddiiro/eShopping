@@ -14,7 +14,7 @@ function CheckoutPages() {
     const { cart } = useContext(ordersContext);
     const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
     const [quantityInput, setQuantityInput] = useState(0);
-
+    console.log("Cart in CheckoutPages:", cart);
     useEffect(() => {
         const fetchPaymentSummary = async () => {
             try {
@@ -49,10 +49,13 @@ function CheckoutPages() {
         }
     }
 
+    // console.log('xxxx', cartProductId)
+
     const handleQuantityInputChange = (quantity) => {
         setIsUpdatingCartItem(true);
+        // if ( isUpdatingCartItem) {
+        // }
         setQuantityInput(quantity);
-
     }
 
     const handleInputChange = (e) => {
@@ -60,20 +63,22 @@ function CheckoutPages() {
         // setIsUpdatingCartItem(true);
     }
 
-    // const handleUpdateCartItem = async (cartItem, productId) => {
-    //     isUpdatingCartItem = true;
-    //     let quantityInput = cartItem.quantity;
+    const updateCartDetails = async (productId , quantityInput) => {
+        console.log("Updating cart item with productId:", productId, "to quantity:", quantityInput);
+        // isUpdatingCartItem = true;
+        // let quantityInput = cartItem.quantity;
+        if (quantityInput > 0) {
+        try {
+            await axios.put(`/api/cart-items/${productId}`, {
+                quantity: quantityInput
+            });
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setIsUpdatingCartItem(false);
+        }
+    }}
 
-    //     try {
-    //         await axios.put(`/api/cart-items/${productId}`, {
-    //             quantity: quantityInput
-    //         });
-    //     } catch (error) {
-    //         console.log(error);
-    //     } finally {
-    //         isUpdatingCartItem = false;
-    //     }
-    // };
 
     return (
         <div>
@@ -108,7 +113,7 @@ function CheckoutPages() {
                                                 <div class="product-quantity">
                                                     {
                                                         isUpdatingCartItem ? (
-                                                            <input type="number" class="quantity-input" defaultValue={quantityInput} onChange={(e) => handleInputChange(e)}/>
+                                                            <input type="number" class="quantity-input" defaultValue={quantityInput} onChange={(e) => handleInputChange(e)} />
                                                         ) : (
                                                             <span>
                                                                 Quantity: <span class="quantity-label">{cartItem.quantity}</span>
@@ -117,16 +122,28 @@ function CheckoutPages() {
 
                                                 </div>
                                                 <div class="update-cart-item">
-                                                    <button className=" button-update-cart"
-                                                        onClick={() => handleQuantityInputChange(cartItem.quantity)}
-                                                    >
-                                                        Update
-                                                    </button>
-                                                    <button className="button-danger"
-                                                        onClick={() => handleDeleteCartItem(cartItem.productId)}
-                                                    >
-                                                        Delete
-                                                    </button>
+                                                    {
+                                                        isUpdatingCartItem ? (
+                                                            <button className=" button-update-cart"
+                                                                onClick={() => updateCartDetails(cartItem.productId, quantityInput)}
+                                                            >
+                                                                Update Cart Item
+                                                            </button>
+                                                        ) : (
+                                                        <>
+                                                            <button className=" button-update-cart"
+                                                                onClick={() => handleQuantityInputChange(cartItem.quantity)}
+                                                            >
+                                                                Edit CartnItem
+                                                            </button>
+                                                            <button className="button-danger"
+                                                                onClick={() => handleDeleteCartItem(cartItem.productId)}
+                                                            >
+                                                                Delete Cart Item
+                                                            </button>
+                                                        </>)
+                                                    }
+
                                                 </div>
                                             </div>
 
