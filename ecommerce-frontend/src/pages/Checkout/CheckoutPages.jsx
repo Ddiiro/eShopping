@@ -59,18 +59,19 @@ function CheckoutPages() {
     }
 
     const updateCartDetails = async (productId , quantityInput) => {
-        console.log("Updating cart item with productId:", productId, "to quantity:", quantityInput);
         if (quantityInput > 0) {
-        try {
-            await axios.put(`/api/cart-items/${productId}`, {
-                quantity: quantityInput
-            });
-        } catch (error) {
-            console.log(error);
-        } finally {
-            setIsUpdatingCartItem(false);
+            console.log(quantityInput)
+            try {
+                await axios.put(`/api/cart-items/${productId}`, {
+                    quantity: Number(quantityInput)
+                });
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsUpdatingCartItem(false);
+            }
         }
-    }}
+    }
 
 
     return (
