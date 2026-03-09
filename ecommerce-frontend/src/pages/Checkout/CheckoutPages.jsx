@@ -49,24 +49,17 @@ function CheckoutPages() {
         }
     }
 
-    // console.log('xxxx', cartProductId)
-
     const handleQuantityInputChange = (quantity) => {
         setIsUpdatingCartItem(true);
-        // if ( isUpdatingCartItem) {
-        // }
         setQuantityInput(quantity);
     }
 
     const handleInputChange = (e) => {
         setQuantityInput(e.target.value);
-        // setIsUpdatingCartItem(true);
     }
 
     const updateCartDetails = async (productId , quantityInput) => {
         console.log("Updating cart item with productId:", productId, "to quantity:", quantityInput);
-        // isUpdatingCartItem = true;
-        // let quantityInput = cartItem.quantity;
         if (quantityInput > 0) {
         try {
             await axios.put(`/api/cart-items/${productId}`, {
