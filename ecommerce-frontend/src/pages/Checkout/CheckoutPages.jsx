@@ -14,16 +14,17 @@ function CheckoutPages() {
     const { cart, loadCart } = useContext(ordersContext);
     const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
     const [quantityInput, setQuantityInput] = useState(0);
-    
-    useEffect(() => {
-        const fetchPaymentSummary = async () => {
-            try {
-                const response = await axios.get('/api/payment-summary')
-                setPaymentSummary(response.data)
-            } catch (error) {
-                console.log(error)
-            }
+    // const [totalItems, setTotalItems] = useState(0);
+
+    const fetchPaymentSummary = async () => {
+        try {
+            const response = await axios.get('/api/payment-summary')
+            setPaymentSummary(response.data)
+        } catch (error) {
+            console.log(error)
         }
+    }
+    useEffect(() => {
         const fetchDeliveryOptions = async () => {
             try {
                 const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
@@ -36,10 +37,11 @@ function CheckoutPages() {
         fetchDeliveryOptions();
     }, [])
 
-    let totalItems = 0
-    if (paymentSummary.totalItems) {
-        totalItems = paymentSummary.totalItems
-    }
+    // const loadTotalItems = () => {
+    //     if (quantityInput) {
+    //     setTotalItems(quantityInput)
+    // }
+    // }
 
     const handleDeleteCartItem = async (cartItemId) => {
         try {
@@ -60,7 +62,7 @@ function CheckoutPages() {
         setQuantityInput(e.target.value);
     }
 
-    const updateCartDetails = async (productId , quantityInput) => {
+    const updateCartDetails = async (productId, quantityInput) => {
         if (quantityInput > 0) {
             console.log(quantityInput)
             try {
@@ -74,13 +76,14 @@ function CheckoutPages() {
             }
 
             await loadCart();
+            await fetchPaymentSummary();
         }
     }
 
 
     return (
         <div>
-            <CheckoutHeader totalItems={totalItems} />
+            <CheckoutHeader totalItems={paymentSummary.totalItems} />
             <div class="checkout-page">
                 <div class="page-title">Review your order</div>
 
@@ -128,18 +131,18 @@ function CheckoutPages() {
                                                                 Update Cart Item
                                                             </button>
                                                         ) : (
-                                                        <>
-                                                            <button className=" button-update-cart"
-                                                                onClick={() => handleQuantityInputChange(cartItem.quantity)}
-                                                            >
-                                                                Edit CartnItem
-                                                            </button>
-                                                            <button className="button-danger"
-                                                                onClick={() => handleDeleteCartItem(cartItem.productId)}
-                                                            >
-                                                                Delete Cart Item
-                                                            </button>
-                                                        </>)
+                                                            <>
+                                                                <button className=" button-update-cart"
+                                                                    onClick={() => handleQuantityInputChange(cartItem.quantity)}
+                                                                >
+                                                                    Edit CartnItem
+                                                                </button>
+                                                                <button className="button-danger"
+                                                                    onClick={() => handleDeleteCartItem(cartItem.productId)}
+                                                                >
+                                                                    Delete Cart Item
+                                                                </button>
+                                                            </>)
                                                     }
 
                                                 </div>
@@ -183,7 +186,7 @@ function CheckoutPages() {
                             Payment Summary
                         </div>
                         <div class="payment-summary-row">
-                            <div>Items ({totalItems}):</div>
+                            <div>Items ({paymentSummary.totalItems}):</div>
                             <div class="payment-summary-money">${paymentSummary.productCostCents / 100}</div>
                         </div>
 
