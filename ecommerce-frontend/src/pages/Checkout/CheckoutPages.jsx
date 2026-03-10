@@ -11,7 +11,7 @@ import { ordersContext } from '../../App';
 function CheckoutPages() {
     const [paymentSummary, setPaymentSummary] = useState({})
     const [deliveryOptions, setDeliveryOptions] = useState([])
-    const { cart } = useContext(ordersContext);
+    const { cart, loadCart } = useContext(ordersContext);
     const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
     const [quantityInput, setQuantityInput] = useState(0);
     
@@ -47,6 +47,8 @@ function CheckoutPages() {
         } catch (error) {
             console.log(error)
         }
+
+        await loadCart();
     }
 
     const handleQuantityInputChange = (quantity) => {
@@ -70,6 +72,8 @@ function CheckoutPages() {
             } finally {
                 setIsUpdatingCartItem(false);
             }
+
+            await loadCart();
         }
     }
 
