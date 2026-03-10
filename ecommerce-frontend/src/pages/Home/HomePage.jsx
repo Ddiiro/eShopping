@@ -8,7 +8,7 @@ import { useContext } from 'react';
 import { ordersContext } from '../../App';
 
 function HomePage() {
-    const {cart, loadCart} = useContext(ordersContext); 
+    const { cart, loadCart } = useContext(ordersContext);
     const [products, setProducts] = useState([])
 
     useEffect(() => {
@@ -22,12 +22,22 @@ function HomePage() {
         }
         fetchProducts();
     }, [])
-  return (
-    <div>
-        <Header cartItems={cart} />
-        <ProductGrid products={products} loadCart={loadCart} />
-    </div>
-  )
+    return (
+        <div>
+            <Header cartItems={cart} />
+            <div className="home-page">
+                <div className="products-grid">
+                    {
+                        products.map((product) => {
+                            return (
+                                <ProductGrid key={product.id} product={product} loadCart={loadCart} />
+                            )
+                        })}
+                    <div />
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default HomePage
