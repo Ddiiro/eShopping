@@ -16,6 +16,7 @@ function CartItemDetails({ cartItem, fetchPaymentSummary }) {
             console.log(error)
         }
 
+        await fetchPaymentSummary();
         await loadCart();
     }
 
