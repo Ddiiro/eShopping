@@ -4,14 +4,13 @@ import { useContext } from 'react';
 import { ordersContext } from '../../App';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import CartItemDetails from './CartItemDetails';
 
 
 
 function OrderSummary( {fetchPaymentSummary} ) {
-    const { cart, loadCart } = useContext(ordersContext);
+    const { cart } = useContext(ordersContext);
     const [deliveryOptions, setDeliveryOptions] = useState([])
-    const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
-    const [quantityInput, setQuantityInput] = useState(0);
 
     useEffect(() => {
         const fetchDeliveryOptions = async () => {
@@ -26,42 +25,6 @@ function OrderSummary( {fetchPaymentSummary} ) {
         fetchDeliveryOptions();
     }, [])
 
-    const handleDeleteCartItem = async (cartItemId) => {
-        try {
-            await axios.delete(`/api/cart-items/${cartItemId}`)
-        } catch (error) {
-            console.log(error)
-        }
-
-        await loadCart();
-    }
-
-    const handleQuantityInputChange = (quantity) => {
-        setIsUpdatingCartItem(true);
-        setQuantityInput(quantity);
-    }
-
-    const handleInputChange = (e) => {
-        setQuantityInput(e.target.value);
-    }
-
-    const updateCartDetails = async (productId, quantityInput) => {
-        if (quantityInput > 0) {
-            console.log(quantityInput)
-            try {
-                await axios.put(`/api/cart-items/${productId}`, {
-                    quantity: Number(quantityInput)
-                });
-            } catch (error) {
-                console.log(error);
-            } finally {
-                setIsUpdatingCartItem(false);
-            }
-
-            await loadCart();
-            await fetchPaymentSummary();
-        }
-    }
 
     return (
         <div>
@@ -81,49 +44,7 @@ function OrderSummary( {fetchPaymentSummary} ) {
                                     <img class="product-image"
                                         src={cartItem.product.image} />
 
-                                    <div class="cart-item-details">
-                                        <div class="product-name">
-                                            {cartItem.product.name}
-                                        </div>
-                                        <div class="product-price">
-                                            {formatCurrency(cartItem.product.priceCents)}
-                                        </div>
-                                        <div class="product-quantity">
-                                            {
-                                                isUpdatingCartItem ? (
-                                                    <input type="number" class="quantity-input" defaultValue={quantityInput} onChange={(e) => handleInputChange(e)} />
-                                                ) : (
-                                                    <span>
-                                                        Quantity: <span class="quantity-label">{cartItem.quantity}</span>
-                                                    </span>)
-                                            }
-
-                                        </div>
-                                        <div class="update-cart-item">
-                                            {
-                                                isUpdatingCartItem ? (
-                                                    <button className=" button-update-cart"
-                                                        onClick={() => updateCartDetails(cartItem.productId, quantityInput)}
-                                                    >
-                                                        Update Cart Item
-                                                    </button>
-                                                ) : (
-                                                    <>
-                                                        <button className=" button-update-cart"
-                                                            onClick={() => handleQuantityInputChange(cartItem.quantity)}
-                                                        >
-                                                            Edit CartnItem
-                                                        </button>
-                                                        <button className="button-danger"
-                                                            onClick={() => handleDeleteCartItem(cartItem.productId)}
-                                                        >
-                                                            Delete Cart Item
-                                                        </button>
-                                                    </>)
-                                            }
-
-                                        </div>
-                                    </div>
+                                    <CartItemDetails cartItem={cartItem} fetchPaymentSummary={fetchPaymentSummary} />
 
                                     <div class="delivery-options">
                                         <div class="delivery-options-title">
