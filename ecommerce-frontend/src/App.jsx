@@ -15,40 +15,39 @@ function App() {
 
   const [cart, setCart] = useState([])
   const [orders, setOrders] = useState([])
+  const loadCart = async () => {
+    try {
+      const response = await axios.get('/api/cart-items?expand=product')
+      setCart(response.data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   useEffect(() => {
-    const fetchCart = async () => {
+    loadCart();
+    const fetchOrders = async () => {
       try {
-        const response = await axios.get('/api/cart-items?expand=product')
-        setCart(response.data)
+        const response = await axios.get('/api/orders?expand=products')
+        setOrders(response.data)
       } catch (error) {
         console.log(error)
       }
     }
-    fetchCart();
-
-    const fetchOrders = async () => {
-            try {
-                const response = await axios.get('/api/orders?expand=products')
-                setOrders(response.data)
-            } catch (error) {
-                console.log(error)
-            }
-        }
-        fetchOrders();
+    fetchOrders();
   }, [])
 
   return (
-     <ordersContext.Provider value={{cart, orders}}>
-    <Routes>
+    <ordersContext.Provider value={{ cart, orders, loadCart }}>
+      <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/orders" element={<OrderPage />} />
         <Route path="/checkout" element={<CheckoutPages />} />
         <Route path="/tracking/:orderId/:productId" element={<TrackingPage />} />
 
-      {/* Wildcard route for 404 page (must be last) */}
-      <Route path="*" element={<PageNotFound />} />
-    </Routes>
+        {/* Wildcard route for 404 page (must be last) */}
+        <Route path="*" element={<PageNotFound />} />
+      </Routes>
     </ordersContext.Provider>
   )
 }

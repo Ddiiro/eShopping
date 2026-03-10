@@ -2,7 +2,7 @@ import React from 'react'
 import '../Home/HomePage.css'
 import axios from 'axios'
 
-function ProductGrid({ products }) {
+function ProductGrid({ products, loadCart }) {
     return (
         <div className="home-page">
             <div className="products-grid">
@@ -44,11 +44,12 @@ function ProductGrid({ products }) {
                                     Added to Cart
                                 </div>
                                 <button className="add-to-cart-button button-primary"
-                                    onClick={() => {
-                                        axios.post('/api/cart-items', {
+                                    onClick={async () => {
+                                        await axios.post('/api/cart-items', {
                                             productId: product.id,
                                             quantity: 1
-                                        })
+                                        });
+                                        await loadCart();
                                     }}
                                 >
                                     Add to Cart

@@ -14,7 +14,7 @@ function CheckoutPages() {
     const { cart } = useContext(ordersContext);
     const [isUpdatingCartItem, setIsUpdatingCartItem] = useState(false);
     const [quantityInput, setQuantityInput] = useState(0);
-    console.log("Cart in CheckoutPages:", cart);
+    
     useEffect(() => {
         const fetchPaymentSummary = async () => {
             try {
