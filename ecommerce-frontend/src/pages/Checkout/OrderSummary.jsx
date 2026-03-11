@@ -11,6 +11,7 @@ import CartItemDetails from './CartItemDetails';
 function OrderSummary( {fetchPaymentSummary} ) {
     const { cart } = useContext(ordersContext);
     const [deliveryOptions, setDeliveryOptions] = useState([])
+    const [selectedDeliveryOptionId, setSelectedDeliveryOptionId] = useState(null);
 
     useEffect(() => {
         const fetchDeliveryOptions = async () => {
@@ -25,6 +26,11 @@ function OrderSummary( {fetchPaymentSummary} ) {
         fetchDeliveryOptions();
     }, [])
 
+    const getSelectedDeliveryOption = (deliveryOptionID) => {
+        console.log("Cart item delivery option ID:", deliveryOptionID);
+        setSelectedDeliveryOptionId(deliveryOptionID);
+        console.log("Selected delivery option ID:", selectedDeliveryOptionId);
+    }
 
     return (
         <div>
@@ -57,7 +63,8 @@ function OrderSummary( {fetchPaymentSummary} ) {
                                                         <input type="radio"
                                                             class="delivery-option-input"
                                                             name={`delivery-option-${cartItem.productId}`}
-                                                            checked={cartItem.deliveryOptionId === deliveryOption.id}
+                                                            checked={selectedDeliveryOptionId}
+                                                            onChange={() => getSelectedDeliveryOption(deliveryOption.id)}
                                                         />
                                                         <div>
                                                             <div class="delivery-option-date">
