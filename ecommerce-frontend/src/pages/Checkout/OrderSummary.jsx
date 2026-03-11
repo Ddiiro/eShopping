@@ -27,9 +27,7 @@ function OrderSummary( {fetchPaymentSummary} ) {
     }, [])
 
     const getSelectedDeliveryOption = (deliveryOptionID) => {
-        console.log("Cart item delivery option ID:", deliveryOptionID); 
         setSelectedDeliveryOptionId(deliveryOptionID);
-        console.log("Selected delivery option ID:", selectedDeliveryOptionId);
     }
 
     return (
