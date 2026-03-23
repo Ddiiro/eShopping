@@ -11,7 +11,6 @@ import CartItemDetails from './CartItemDetails';
 function OrderSummary({ fetchPaymentSummary }) {
     const { cart } = useContext(ordersContext);
     const [deliveryOptions, setDeliveryOptions] = useState([])
-    const [selectedDeliveryOptionId, setSelectedDeliveryOptionId] = useState(null);
 
     useEffect(() => {
         const fetchDeliveryOptions = async () => {
