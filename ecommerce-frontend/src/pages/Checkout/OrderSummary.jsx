@@ -62,15 +62,6 @@ function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
                                         </div>
                                         {
                                             deliveryOptions.map((deliveryOption) => {
-
-                                                // const updateDeliveryDate = async () => {
-                                                //     await axios.put(`api/cart-items/${cartItem.productId}`, {
-                                                //         deliveryOptionId: deliveryOption.id
-                                                //     })
-
-                                                //     // fetchDeliveryOptions();
-                                                //     await fetchPaymentSummary();
-                                                // }
                                                 return (
                                                     <div
                                                         class="delivery-option"
