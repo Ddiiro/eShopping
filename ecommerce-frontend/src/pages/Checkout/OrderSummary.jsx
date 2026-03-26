@@ -8,19 +8,20 @@ import CartItemDetails from './CartItemDetails';
 
 
 
-function OrderSummary({ fetchPaymentSummary }) {
+function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
     const { cart } = useContext(ordersContext);
     const [deliveryOptions, setDeliveryOptions] = useState([])
 
-    useEffect(() => {
-        const fetchDeliveryOptions = async () => {
-            try {
-                const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
-                setDeliveryOptions(response.data)
-            } catch (error) {
-                console.log(error)
-            }
+    const fetchDeliveryOptions = async () => {
+        try {
+            const response = await axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
+            setDeliveryOptions(response.data)
+        } catch (error) {
+            console.log(error)
         }
+    }
+    
+    useEffect(() => {
         fetchPaymentSummary();
         fetchDeliveryOptions();
     }, [])
@@ -31,9 +32,9 @@ function OrderSummary({ fetchPaymentSummary }) {
             <div class="order-summary">
                 {
                     cart.map((cartItem) => {
-                        const selectedDeliveryOption = deliveryOptions.find((deliveryOption) => {
-                            return deliveryOption.id === cartItem.deliveryOptionId;
-                        })
+                        const selectedDeliveryOption = deliveryOptions.find(
+                            option => option.id === cartItem.deliveryOptionId
+                        );
                         return (
                             <div key={cartItem.productId} class="cart-item-container">
                                 <div class="delivery-date">
@@ -57,13 +58,16 @@ function OrderSummary({ fetchPaymentSummary }) {
                                                     await axios.put(`api/cart-items/${cartItem.productId}`, {
                                                         deliveryOptionId: deliveryOption.id
                                                     })
+
+                                                    // fetchDeliveryOptions();
+                                                    await fetchPaymentSummary();
                                                 }
                                                 return (
                                                     <div class="delivery-option" key={deliveryOption.id} onClick={updateDeliveryDate}>
                                                         <input type="radio"
                                                             class="delivery-option-input"
                                                             name={`delivery-option-${cartItem.productId}`}
-                                                            checked={deliveryOption.id}
+                                                            checked={deliveryOption.id === cartItem.deliveryOptionId}
                                                         />
                                                         <div>
                                                             <div class="delivery-option-date">

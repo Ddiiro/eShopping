@@ -4,8 +4,11 @@ import CheckoutHeader from './CheckoutHeader';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import OrderSummary from './OrderSummary';
+// import { useContext } from 'react';
+// import { ordersContext } from '../../App';
 
 function CheckoutPages() {
+    // const { loadCart } = useContext(ordersContext);
     const [paymentSummary, setPaymentSummary] = useState({})
     
 
@@ -30,7 +33,7 @@ function CheckoutPages() {
                 <div class="page-title">Review your order</div>
 
                 <div class="checkout-grid">
-                    <OrderSummary fetchPaymentSummary={fetchPaymentSummary} />
+                    <OrderSummary fetchPaymentSummary={fetchPaymentSummary} paymentSummary={paymentSummary}/>
 
                     <div class="payment-summary">
                         <div class="payment-summary-title">
