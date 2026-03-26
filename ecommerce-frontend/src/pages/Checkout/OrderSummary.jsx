@@ -9,7 +9,7 @@ import CartItemDetails from './CartItemDetails';
 
 
 function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
-    const { cart } = useContext(ordersContext);
+    const { cart, loadCart } = useContext(ordersContext);
     const [deliveryOptions, setDeliveryOptions] = useState([])
 
     const fetchDeliveryOptions = async () => {
@@ -20,7 +20,16 @@ function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
             console.log(error)
         }
     }
-    
+
+    const updateDeliveryDate = async (productId, deliveryOptionId) => {
+        await axios.put(`/api/cart-items/${productId}`, {
+            deliveryOptionId
+        });
+
+        await loadCart();
+        await fetchPaymentSummary();
+    };
+
     useEffect(() => {
         fetchPaymentSummary();
         fetchDeliveryOptions();
@@ -54,16 +63,20 @@ function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
                                         {
                                             deliveryOptions.map((deliveryOption) => {
 
-                                                const updateDeliveryDate = async () => {
-                                                    await axios.put(`api/cart-items/${cartItem.productId}`, {
-                                                        deliveryOptionId: deliveryOption.id
-                                                    })
+                                                // const updateDeliveryDate = async () => {
+                                                //     await axios.put(`api/cart-items/${cartItem.productId}`, {
+                                                //         deliveryOptionId: deliveryOption.id
+                                                //     })
 
-                                                    // fetchDeliveryOptions();
-                                                    await fetchPaymentSummary();
-                                                }
+                                                //     // fetchDeliveryOptions();
+                                                //     await fetchPaymentSummary();
+                                                // }
                                                 return (
-                                                    <div class="delivery-option" key={deliveryOption.id} onClick={updateDeliveryDate}>
+                                                    <div
+                                                        class="delivery-option"
+                                                        key={deliveryOption.id}
+                                                        onClick={() => updateDeliveryDate(cartItem.productId, deliveryOption.id)}
+                                                    >
                                                         <input type="radio"
                                                             class="delivery-option-input"
                                                             name={`delivery-option-${cartItem.productId}`}
