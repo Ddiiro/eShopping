@@ -6,9 +6,18 @@ import { formatCurrency } from '../../utils/currency';
 import dayjs from 'dayjs';
 import { useContext } from 'react';
 import { ordersContext } from '../../App';
+import axios from 'axios';
 
 function OrdersGrid() {
-const { orders } = useContext(ordersContext); 
+    const { orders, loadCart } = useContext(ordersContext);
+
+    // const addCartItem = async () => {
+    //     await axios.post('/api/cart-items' {
+    //         "productId": "uuid",
+    //         // Must be between 1 and 10
+    //         "quantity": "number"
+    //     })
+    // }
 
     return (
         <>
@@ -58,7 +67,18 @@ const { orders } = useContext(ordersContext);
                                                             <div class="product-quantity">
                                                                 Quantity: {product.quantity}
                                                             </div>
-                                                            <button class="buy-again-button button-primary">
+                                                            <button
+                                                                class="buy-again-button button-primary"
+                                                                onClick={
+                                                                    async () => {
+                                                                        await axios.post('/api/cart-items', {
+                                                                            productId:product.productId,
+                                                                            quantity:product.quantity
+                                                                        })
+
+                                                                        await loadCart();
+                                                                    }}
+                                                            >
                                                                 <img class="buy-again-icon" src="public/assets/images/icons/buy-again.png" />
                                                                 <span class="buy-again-message">Add to Cart</span>
                                                             </button>
