@@ -4,11 +4,11 @@ import CheckoutHeader from './CheckoutHeader';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import OrderSummary from './OrderSummary';
-// import { useContext } from 'react';
-// import { ordersContext } from '../../App';
+import { useContext } from 'react';
+import { ordersContext } from '../../App';
 
 function CheckoutPages() {
-    // const { loadCart } = useContext(ordersContext);
+    const { loadCart } = useContext(ordersContext);
     const [paymentSummary, setPaymentSummary] = useState({})
     
 
@@ -19,6 +19,13 @@ function CheckoutPages() {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const placeCartOrder = async () => {
+        await axios.post('/api/orders')
+
+        await loadCart();
+        await fetchPaymentSummary();
     }
 
     useEffect(() => {
@@ -63,7 +70,10 @@ function CheckoutPages() {
                             <div>Order total:</div>
                             <div class="payment-summary-money">${paymentSummary.totalCostCents / 100}</div>
                         </div>
-                        <button class="place-order-button button-primary">
+                        <button 
+                            class="place-order-button button-primary"
+                            onClick={placeCartOrder}
+                        >
                             Place your order
                         </button>
                     </div>
