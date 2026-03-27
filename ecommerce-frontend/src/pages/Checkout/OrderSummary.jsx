@@ -72,6 +72,7 @@ function OrderSummary({ fetchPaymentSummary, paymentSummary }) {
                                                             class="delivery-option-input"
                                                             name={`delivery-option-${cartItem.productId}`}
                                                             checked={deliveryOption.id === cartItem.deliveryOptionId}
+                                                            onChange={()=>{}}
                                                         />
                                                         <div>
                                                             <div class="delivery-option-date">
