@@ -11,14 +11,6 @@ import axios from 'axios';
 function OrdersGrid() {
     const { orders, loadCart } = useContext(ordersContext);
 
-    // const addCartItem = async () => {
-    //     await axios.post('/api/cart-items' {
-    //         "productId": "uuid",
-    //         // Must be between 1 and 10
-    //         "quantity": "number"
-    //     })
-    // }
-
     return (
         <>
             <div class="orders-page">
@@ -51,8 +43,16 @@ function OrdersGrid() {
                                     <div class="order-details-grid">
                                         {
                                             order.products.map((product) => {
+                                                const addCartItem = async () => {
+                                                    await axios.post('/api/cart-items', {
+                                                        productId: product.productId,
+                                                        quantity: product.quantity
+                                                    })
+
+                                                    await loadCart();
+                                                }
                                                 return (
-                                                    <Fragment key={product.id}>
+                                                    <Fragment key={product.productId}>
                                                         <div class="product-image-container">
                                                             <img src={product.product.image} />
                                                         </div>
@@ -69,15 +69,7 @@ function OrdersGrid() {
                                                             </div>
                                                             <button
                                                                 class="buy-again-button button-primary"
-                                                                onClick={
-                                                                    async () => {
-                                                                        await axios.post('/api/cart-items', {
-                                                                            productId:product.productId,
-                                                                            quantity:product.quantity
-                                                                        })
-
-                                                                        await loadCart();
-                                                                    }}
+                                                                onClick={addCartItem}
                                                             >
                                                                 <img class="buy-again-icon" src="public/assets/images/icons/buy-again.png" />
                                                                 <span class="buy-again-message">Add to Cart</span>
