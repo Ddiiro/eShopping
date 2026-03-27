@@ -6,10 +6,12 @@ import { useState, useEffect } from 'react';
 import OrderSummary from './OrderSummary';
 import { useContext } from 'react';
 import { ordersContext } from '../../App';
+import { useNavigate } from 'react-router-dom';
 
 function CheckoutPages() {
     const { loadCart } = useContext(ordersContext);
     const [paymentSummary, setPaymentSummary] = useState({})
+    const navigate = useNavigate();
     
 
     const fetchPaymentSummary = async () => {
@@ -26,6 +28,7 @@ function CheckoutPages() {
 
         await loadCart();
         await fetchPaymentSummary();
+        navigate('/orders')
     }
 
     useEffect(() => {
