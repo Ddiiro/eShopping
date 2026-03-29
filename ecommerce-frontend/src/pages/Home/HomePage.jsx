@@ -8,18 +8,9 @@ import { useContext } from 'react';
 import { ordersContext } from '../../App';
 
 function HomePage() {
-    const { cart, loadCart } = useContext(ordersContext);
-    const [products, setProducts] = useState([])
+    const { cart, loadCart, products, fetchProducts } = useContext(ordersContext);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-    try {
-      const response = await axios.get('/api/products')
-      setProducts(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
         fetchProducts();
     }, [])
     return (
