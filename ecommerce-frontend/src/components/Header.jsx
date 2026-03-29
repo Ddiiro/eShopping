@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css'
+import axios from 'axios';
+import { ordersContext } from '../App';
 
-function Header({cartItems, products}) {
+function Header({cartItems}) {
+
+    // const { loadCart } = useContext(ordersContext);
 
     const [search, setSearch] = useState("");
 
-    const handleSearch = (e) => {
-        console.log(e.target.value)
+    const handleSearchInput = (e) => {
+        setSearch(e.target.value);
+    }
+
+    const handleSearchFilter= async()=> {
+        await axios.get(`/api/products?search=${search}`);
+        // await axios.get('/api/products')
+        // await loadCart();
+
+        setSearch("");
     }
 
     let totalQuantity = 0
@@ -36,12 +48,12 @@ function Header({cartItems, products}) {
                 type="text" 
                 placeholder="Search"
                 onChange={(e)=> {
-                    handleSearch(e);
+                    handleSearchInput(e);
                 }}
                 // value={search}
                 />
 
-                <button className="search-button">
+                <button className="search-button" onClick={handleSearchFilter}>
                 <img className="search-icon" src="public/assets/images/icons/search-icon.png" />
                 </button>
             </div>

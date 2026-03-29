@@ -7,7 +7,6 @@ import PageNotFound from './pages/PageNotFound/PageNotFound';
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { createContext } from 'react';
-// import { ordersContext } from './store/context';
 
 export const ordersContext = createContext();
 
@@ -15,21 +14,12 @@ function App() {
 
   const [cart, setCart] = useState([])
   const [orders, setOrders] = useState([])
-    const [products, setProducts] = useState([])
   
   const loadCart = async () => {
+    console.log('dddddddd')
     try {
       const response = await axios.get('/api/cart-items?expand=product')
       setCart(response.data)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('/api/products')
-      setProducts(response.data)
     } catch (error) {
       console.log(error)
     }
@@ -49,7 +39,7 @@ function App() {
   }, [])
 
   return (
-    <ordersContext.Provider value={{ cart, orders, loadCart, products, fetchProducts }}>
+    <ordersContext.Provider value={{ cart, orders, loadCart, setCart }}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/orders" element={<OrderPage />} />
