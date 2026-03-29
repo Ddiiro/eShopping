@@ -32,9 +32,9 @@ function Header({ cartItems }) {
                 <div className="left-section">
                     <Link to="/">
                         <img className="logo"
-                            src="public/assets/images/logo-white.png" />
+                            src="public/assets/images/logo.png" />
                         <img className="mobile-logo"
-                            src="public/assets/images/mobile-logo-white.png" />
+                            src="public/assets/images/mobile-logo.png" />
                     </Link>
                 </div>
 
