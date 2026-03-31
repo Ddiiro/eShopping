@@ -1,8 +1,13 @@
 import React from 'react'
 import './checkout-header.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function CheckoutHeader({ totalItems }) {
+    const naviagte = useNavigate();
+
+    const goToOrdersPage = () => {
+        naviagte('/orders')
+    }
   return (
     <div>
         <div className="checkout-header">
@@ -14,9 +19,11 @@ function CheckoutHeader({ totalItems }) {
                 </Link>
                 </div>
 
-                <div class="checkout-header-middle-section">
-                Checkout (<a class="return-to-home-link"
-                    href="index.html">{totalItems} items</a>)
+                <div class="checkout-header-middle-section" onClick={goToOrdersPage}>
+                Checkout -
+                <div class="return-to-home-link">
+                    {totalItems} items
+                </div>
                 </div>
 
                 <div class="checkout-header-right-section">
